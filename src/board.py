@@ -10,7 +10,7 @@ class Board(pygame.sprite.Sprite):
             self.rect = self.image.get_rect(bottomright=(547,547))
         elif color == 'Green':
             self.rect = self.image.get_rect(topright=(547,0))
-        elif color == 'Center':
-            self.rect = self.image.get_rect(topright=(327,215))
-        else:
+        elif color == 'Blue':
             self.rect = self.image.get_rect(bottomleft=(0,547))
+        else:
+            self.rect = self.image.get_rect(topright=(327,215))
