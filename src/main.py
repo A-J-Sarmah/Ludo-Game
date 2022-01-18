@@ -16,6 +16,7 @@ yellow_board = pygame.image.load('../assets/yellow_board.png').convert_alpha()
 green_board = pygame.image.load('../assets/green_board.png').convert_alpha()
 blue_board = pygame.image.load('../assets/blue_board.png').convert_alpha()
 center_board = pygame.image.load('../assets/center_board.png').convert_alpha()
+block = pygame.image.load('../assets/game_block.png').convert_alpha()
 
 # creating board
 board = pygame.sprite.Group()
