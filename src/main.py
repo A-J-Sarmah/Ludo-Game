@@ -49,7 +49,10 @@ while True:
     screen.fill('White')
     #Drawing board and block
     board.draw(screen) 
-    create_board_block("left",0,212,render_blocks)
+    create_board_block("horizontal",0,214,render_blocks)
+    create_board_block("horizontal",325,214,render_blocks)
+    create_board_block("vertical",217,0,render_blocks)
+    create_board_block("vertical",217,325,render_blocks)
     block.draw(screen)
     pygame.display.update()
     clock.tick(60)
