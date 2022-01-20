@@ -19,6 +19,10 @@ green_board = pygame.image.load('../assets/green_board.png').convert_alpha()
 blue_board = pygame.image.load('../assets/blue_board.png').convert_alpha()
 center_board = pygame.image.load('../assets/center_board.png').convert_alpha()
 block_image = pygame.image.load('../assets/game_block.png').convert_alpha()
+block_image_red = pygame.image.load('../assets/game_block_red.png').convert_alpha()
+block_image_yellow = pygame.image.load('../assets/game_block_yellow.png').convert_alpha()
+block_image_green = pygame.image.load('../assets/game_block_green.png').convert_alpha()
+block_image_blue = pygame.image.load('../assets/game_block_blue.png').convert_alpha()
 
 # creating board
 board = pygame.sprite.Group()
@@ -31,9 +35,18 @@ board.add(Board('Center',center_board))
 block = pygame.sprite.Group()
 
 #rendering block on board
-def render_blocks(is_special,position_x,position_y):
+def render_blocks(is_special,color,position_x,position_y):
     if is_special:
-        block.add(Block(block_image,position_x,position_y))
+        if color == "red":
+            block.add(Block(block_image_red,position_x,position_y))
+        elif color == "yellow":
+            block.add(Block(block_image_yellow,position_x,position_y))
+        elif color == "blue":
+            block.add(Block(block_image_blue,position_x,position_y))
+        elif color == "green":
+            block.add(Block(block_image_green,position_x,position_y))
+        else:
+            pass
     else:
         block.add(Block(block_image,position_x,position_y))
 
@@ -49,10 +62,10 @@ while True:
     screen.fill('White')
     #Drawing board and block
     board.draw(screen) 
-    create_board_block("horizontal",0,214,render_blocks)
-    create_board_block("horizontal",325,214,render_blocks)
-    create_board_block("vertical",217,0,render_blocks)
-    create_board_block("vertical",217,325,render_blocks)
+    create_board_block("horizontal","red",0,214,render_blocks)
+    create_board_block("horizontal","yellow",325,214,render_blocks)
+    create_board_block("vertical","green",217,0,render_blocks)
+    create_board_block("vertical","blue",217,325,render_blocks)
     block.draw(screen)
     pygame.display.update()
     clock.tick(60)
