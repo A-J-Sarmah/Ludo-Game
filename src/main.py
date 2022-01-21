@@ -1,6 +1,7 @@
 import pygame 
 from sys import exit
 from board import Board
+from board import Display_Board
 from block import Block
 from utils import create_board_block
 
@@ -8,7 +9,7 @@ pygame.init() #initialize pygame
 
 # creating the window
 WIDTH = 547
-HEIGHT = 547
+HEIGHT = 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Ludo")
 
@@ -23,6 +24,7 @@ block_image_red = pygame.image.load('../assets/game_block_red.png').convert_alph
 block_image_yellow = pygame.image.load('../assets/game_block_yellow.png').convert_alpha()
 block_image_green = pygame.image.load('../assets/game_block_green.png').convert_alpha()
 block_image_blue = pygame.image.load('../assets/game_block_blue.png').convert_alpha()
+display_board = pygame.image.load('../assets/display_board.png').convert_alpha()
 
 # creating board
 board = pygame.sprite.Group()
@@ -32,9 +34,12 @@ board.add(Board('Blue',blue_board))
 board.add(Board('Yellow',yellow_board))
 board.add(Board('Center',center_board))
 
+# blocks and display status board
 block = pygame.sprite.Group()
+display_status = pygame.sprite.Group()
+display_status.add(Display_Board(display_board))
 
-#rendering block on board
+#rendering block on board this goes as the block method for create_board_block funtion that performs the calculations and creates the blocks for the board
 def render_blocks(is_special,color,position_x,position_y):
     if is_special:
         if color == "red":
@@ -67,5 +72,6 @@ while True:
     create_board_block("vertical","green",217,0,render_blocks)
     create_board_block("vertical","blue",217,325,render_blocks)
     block.draw(screen)
+    display_status.draw(screen)
     pygame.display.update()
     clock.tick(60)
