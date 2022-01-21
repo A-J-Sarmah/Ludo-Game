@@ -1,7 +1,7 @@
 import pygame 
 from sys import exit
 from board import Board
-from board import Display_Board
+from board import Status_Board
 from block import Block
 from utils import create_board_block
 
@@ -34,10 +34,10 @@ board.add(Board('Blue',blue_board))
 board.add(Board('Yellow',yellow_board))
 board.add(Board('Center',center_board))
 
-# blocks and display status board
+# blocks and status board
 block = pygame.sprite.Group()
-display_status = pygame.sprite.Group()
-display_status.add(Display_Board(display_board))
+status_board = pygame.sprite.Group()
+status_board.add(Status_Board(display_board))
 
 #rendering block on board this goes as the block method for create_board_block funtion that performs the calculations and creates the blocks for the board
 def render_blocks(is_special,color,position_x,position_y):
@@ -72,6 +72,6 @@ while True:
     create_board_block("vertical","green",217,0,render_blocks)
     create_board_block("vertical","blue",217,325,render_blocks)
     block.draw(screen)
-    display_status.draw(screen)
+    status_board.draw(screen)
     pygame.display.update()
     clock.tick(60)
