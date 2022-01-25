@@ -34,6 +34,13 @@ board.add(Board('Blue',blue_board))
 board.add(Board('Yellow',yellow_board))
 board.add(Board('Center',center_board))
 
+#getting inital position for board pieces
+board_group_sprites = board.sprites()
+red_piece_initial_pos = board_group_sprites[0].initial_index_per_color()
+green_piece_initial_pos = board_group_sprites[1].initial_index_per_color()
+blue_piece_initial_pos = board_group_sprites[2].initial_index_per_color()
+yellow_piece_initial_pos = board_group_sprites[3].initial_index_per_color()
+
 # blocks and status board
 block = pygame.sprite.Group()
 status_board = pygame.sprite.Group()

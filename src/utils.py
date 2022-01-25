@@ -32,3 +32,12 @@ def create_board_block(screen_position,color,position_x, position_y,block_method
                 relative_position_y = position_y
     else:
         pass
+
+
+def initial_positions():
+    return{
+        "1":[70,70],
+        "2":[135,70],
+        "3":[70,140],
+        "4":[136,148]
+        }
