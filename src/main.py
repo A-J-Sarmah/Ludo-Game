@@ -1,8 +1,8 @@
 import pygame 
 from sys import exit
-from board import Board
-from board import Status_Board
-from block import Block
+from Board import Board
+from Board import Status_Board
+from Block import Block
 from utils import create_board_block
 
 pygame.init() #initialize pygame
