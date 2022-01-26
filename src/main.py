@@ -90,7 +90,6 @@ def render_initial_players(color):
     elif color == "blue":
         for i in range(4):
             positions = find_blocks(i,blue_piece_initial_pos)
-            print(positions)
             blue_piece_group.add(Player(color,blue_piece,positions[0],positions[1]))
     else:
         pass
