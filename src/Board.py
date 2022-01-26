@@ -5,13 +5,14 @@ class Board(pygame.sprite.Sprite):
     def __init__(self,color,board):
         super().__init__()
         self.image = board
-        if color == 'Red':
+        self.color = color
+        if self.color == 'Red':
             self.rect = self.image.get_rect()
-        elif color == 'Yellow':
+        elif self.color == 'Yellow':
             self.rect = self.image.get_rect(bottomright=(547,547))
-        elif color == 'Green':
+        elif self.color == 'Green':
             self.rect = self.image.get_rect(topright=(547,0))
-        elif color == 'Blue':
+        elif self.color == 'Blue':
             self.rect = self.image.get_rect(bottomleft=(0,547))
         else:
             self.rect = self.image.get_rect(topright=(327,215))
@@ -21,9 +22,17 @@ class Board(pygame.sprite.Sprite):
         initial_positions_color = initial_positions()
         for key in initial_positions_color:
             current_list = initial_positions_color[key]
-            for i in range(len(current_list)):
-                if i == 0: current_list[i] += self.rect.midleft[0]
-                else: current_list[i] += self.rect.midleft[0]
+            if self.color == "Red" or self.color == "Green":
+                for i in range(len(current_list)):
+                    if i == 0: current_list[i] += self.rect.x
+            elif self.color == "Yellow":
+                for i in range(len(current_list)):
+                    current_list[i] += self.rect.x
+            elif self.color == "Blue":
+                for i in range(len(current_list)):
+                    if i == 1: current_list[i] += self.rect.y
+            else:
+                pass
         return initial_positions_color
 
 class Status_Board(pygame.sprite.Sprite):

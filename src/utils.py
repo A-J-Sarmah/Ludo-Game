@@ -41,3 +41,9 @@ def initial_positions():
         "3":[70,140],
         "4":[136,148]
         }
+
+def find_blocks(index,positions):
+   for element in positions:
+       current_list = positions[element]
+       if index+1 == int(element):
+           return current_list

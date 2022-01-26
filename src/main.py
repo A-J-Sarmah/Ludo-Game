@@ -3,7 +3,9 @@ from sys import exit
 from Board import Board
 from Board import Status_Board
 from Block import Block
+from Player import Player
 from utils import create_board_block
+from utils import find_blocks
 
 pygame.init() #initialize pygame
 
@@ -25,6 +27,10 @@ block_image_yellow = pygame.image.load('../assets/game_block_yellow.png').conver
 block_image_green = pygame.image.load('../assets/game_block_green.png').convert_alpha()
 block_image_blue = pygame.image.load('../assets/game_block_blue.png').convert_alpha()
 display_board = pygame.image.load('../assets/display_board.png').convert_alpha()
+red_piece = pygame.image.load('../assets/red.png').convert_alpha()
+yellow_piece = pygame.image.load('../assets/yellow.png').convert_alpha()
+blue_piece = pygame.image.load('../assets/blue.png').convert_alpha()
+green_piece = pygame.image.load('../assets/green.png').convert_alpha()
 
 # creating board
 board = pygame.sprite.Group()
@@ -62,6 +68,38 @@ def render_blocks(is_special,color,position_x,position_y):
     else:
         block.add(Block(block_image,position_x,position_y))
 
+#Pieces configuration
+red_piece_group = pygame.sprite.Group()
+yellow_piece_group = pygame.sprite.Group()
+blue_piece_group = pygame.sprite.Group()
+green_piece_group = pygame.sprite.Group()
+
+def render_initial_players(color):
+    if color == "red":
+        for i in range(4):
+            positions = find_blocks(i,red_piece_initial_pos)
+            red_piece_group.add(Player(color,red_piece,positions[0],positions[1]))
+    elif color == "yellow":
+        for i in range(4):
+            positions = find_blocks(i,yellow_piece_initial_pos)
+            yellow_piece_group.add(Player(color,yellow_piece,positions[0],positions[1]))
+    elif color == "green":
+        for i in range(4):
+            positions = find_blocks(i,green_piece_initial_pos)
+            green_piece_group.add(Player(color,green_piece,positions[0],positions[1]))
+    elif color == "blue":
+        for i in range(4):
+            positions = find_blocks(i,blue_piece_initial_pos)
+            print(positions)
+            blue_piece_group.add(Player(color,blue_piece,positions[0],positions[1]))
+    else:
+        pass
+
+render_initial_players("red")
+render_initial_players("yellow")
+render_initial_players("blue")
+render_initial_players("green")
+
 #clock and FPS
 clock = pygame.time.Clock()
 
@@ -80,5 +118,9 @@ while True:
     create_board_block("vertical","blue",217,325,render_blocks)
     block.draw(screen)
     status_board.draw(screen)
+    red_piece_group.draw(screen)
+    yellow_piece_group.draw(screen)
+    blue_piece_group.draw(screen)
+    green_piece_group.draw(screen)
     pygame.display.update()
     clock.tick(60)
