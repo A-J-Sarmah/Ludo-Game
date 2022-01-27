@@ -36,10 +36,10 @@ def create_board_block(screen_position,color,position_x, position_y,block_method
 
 def initial_positions():
     return{
-        "1":[70,70],
-        "2":[135,70],
-        "3":[70,140],
-        "4":[136,148]
+        "1":[62,55],
+        "2":[132,55],
+        "3":[62,125],
+        "4":[136,130]
         }
 
 def find_blocks(index,positions):
