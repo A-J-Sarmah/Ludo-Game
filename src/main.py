@@ -78,19 +78,19 @@ def render_initial_players(color):
     if color == "red":
         for i in range(4):
             positions = find_blocks(i,red_piece_initial_pos)
-            red_piece_group.add(Player(color,red_piece,positions[0],positions[1]))
+            red_piece_group.add(Player(color,red_piece,positions[0],positions[1],False))
     elif color == "yellow":
         for i in range(4):
             positions = find_blocks(i,yellow_piece_initial_pos)
-            yellow_piece_group.add(Player(color,yellow_piece,positions[0],positions[1]))
+            yellow_piece_group.add(Player(color,yellow_piece,positions[0],positions[1],False))
     elif color == "green":
         for i in range(4):
             positions = find_blocks(i,green_piece_initial_pos)
-            green_piece_group.add(Player(color,green_piece,positions[0],positions[1]))
+            green_piece_group.add(Player(color,green_piece,positions[0],positions[1],False))
     elif color == "blue":
         for i in range(4):
             positions = find_blocks(i,blue_piece_initial_pos)
-            blue_piece_group.add(Player(color,blue_piece,positions[0],positions[1]))
+            blue_piece_group.add(Player(color,blue_piece,positions[0],positions[1],False))
     else:
         pass
 
