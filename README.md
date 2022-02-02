@@ -1,3 +1,4 @@
 # Ludo Game
 
-This is a simple ludo game create using python and pygame
+A simple ludo game create using python and pygame . 
+This repo is currently under development.
