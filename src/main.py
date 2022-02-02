@@ -6,12 +6,18 @@ from Block import Block
 from Player import Player
 from utils import create_board_block
 from utils import find_blocks
+from utils import generate_random_dice_values
+from utils import next_player 
 
 pygame.init() #initialize pygame
 
-# creating the window
+# creating the window and basic global game variables
 WIDTH = 547
 HEIGHT = 600
+IS_PLAYING = True
+TURN = "red"
+current_number = 6
+font = pygame.font.SysFont('arial', 50)
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Ludo")
 
@@ -99,27 +105,38 @@ render_initial_players("yellow")
 render_initial_players("blue")
 render_initial_players("green")
 
+#display current score/number
+def display_score(score,font):
+    surface = font.render(f"{score}",False,(64,64,64))
+    rect = surface.get_rect(topright=(470,550))
+    screen.blit(surface,rect)
+
 #clock and FPS
 clock = pygame.time.Clock()
 
 #game loop
+create_board_block("horizontal","red",0,214,render_blocks)
+create_board_block("horizontal","yellow",325,214,render_blocks)
+create_board_block("vertical","green",217,0,render_blocks)
+create_board_block("vertical","blue",217,325,render_blocks)
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+            current_number = generate_random_dice_values()
+            TURN = next_player(TURN,current_number)
+            print(TURN)
     screen.fill('White')
     #Drawing board and block
     board.draw(screen) 
-    create_board_block("horizontal","red",0,214,render_blocks)
-    create_board_block("horizontal","yellow",325,214,render_blocks)
-    create_board_block("vertical","green",217,0,render_blocks)
-    create_board_block("vertical","blue",217,325,render_blocks)
     block.draw(screen)
     status_board.draw(screen)
     red_piece_group.draw(screen)
     yellow_piece_group.draw(screen)
     blue_piece_group.draw(screen)
     green_piece_group.draw(screen)
+    display_score(current_number,font)
     pygame.display.update()
     clock.tick(60)

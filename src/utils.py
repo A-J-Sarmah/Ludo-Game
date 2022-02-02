@@ -1,3 +1,23 @@
+from random import choice
+
+def generate_random_dice_values():
+    return choice([1,2,3,4,5,6])
+
+def next_player(current_player,current_config):
+    if current_config != 6:
+        if(current_player == "red"):
+            return "green"
+        elif(current_player == "green"):
+            return "yellow"
+        elif(current_player == "yellow"):
+            return "blue"
+        elif(current_player == "blue"):
+            return "red"
+        else:
+            pass
+    else:
+        return current_player
+
 def create_board_block(screen_position,color,position_x, position_y,block_method):
     block_parameters = 37
     relative_position_x = position_x
