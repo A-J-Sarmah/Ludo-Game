@@ -8,6 +8,7 @@ from utils import create_board_block
 from utils import find_blocks
 from utils import generate_random_dice_values
 from utils import next_player 
+from utils import update_game_piece
 
 pygame.init() #initialize pygame
 
@@ -84,19 +85,19 @@ def render_initial_players(color):
     if color == "red":
         for i in range(4):
             positions = find_blocks(i,red_piece_initial_pos)
-            red_piece_group.add(Player(color,red_piece,positions[0],positions[1],False))
+            red_piece_group.add(Player(color,red_piece,positions[0],positions[1],False,i+1))
     elif color == "yellow":
         for i in range(4):
             positions = find_blocks(i,yellow_piece_initial_pos)
-            yellow_piece_group.add(Player(color,yellow_piece,positions[0],positions[1],False))
+            yellow_piece_group.add(Player(color,yellow_piece,positions[0],positions[1],False,i+1))
     elif color == "green":
         for i in range(4):
             positions = find_blocks(i,green_piece_initial_pos)
-            green_piece_group.add(Player(color,green_piece,positions[0],positions[1],False))
+            green_piece_group.add(Player(color,green_piece,positions[0],positions[1],False,i+1))
     elif color == "blue":
         for i in range(4):
             positions = find_blocks(i,blue_piece_initial_pos)
-            blue_piece_group.add(Player(color,blue_piece,positions[0],positions[1],False))
+            blue_piece_group.add(Player(color,blue_piece,positions[0],positions[1],False,i+1))
     else:
         pass
 
@@ -110,6 +111,21 @@ def display_score(score,font):
     surface = font.render(f"{score}",False,(64,64,64))
     rect = surface.get_rect(topright=(470,550))
     screen.blit(surface,rect)
+
+print(red_piece_initial_pos)
+
+#update game
+def update_game():
+    if TURN == "red":
+        update_game_piece(red_piece_initial_pos[0],red_piece_group,current_number)
+    elif TURN == "yellow":
+        update_game_piece()
+    elif TURN == "green":
+        update_game_piece()
+    elif TURN == "blue":
+        update_game_piece()
+    else:
+        pass
 
 #clock and FPS
 clock = pygame.time.Clock()
@@ -127,7 +143,6 @@ while True:
         if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
             current_number = generate_random_dice_values()
             TURN = next_player(TURN,current_number)
-            print(TURN)
     screen.fill('White')
     #Drawing board and block
     board.draw(screen) 

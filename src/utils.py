@@ -67,3 +67,14 @@ def find_blocks(index,positions):
        current_list = positions[element]
        if index+1 == int(element):
            return current_list
+
+def update_game_piece(init_pos,piece_array,score):
+    arr = [] 
+    for piece in piece_array:
+        if piece.is_on_game:
+            arr.push(piece.number)
+        if piece.is_on_game == False and score == 6:
+           piece.rect = init_pos
+           return
+    choice = choice(arr)
+    piece_array[choice].rect.x += score * 37 
